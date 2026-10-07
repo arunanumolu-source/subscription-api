@@ -1,3 +1,35 @@
 spring:
   application:
     name: subscription-api
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3307/subscription_db?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:subscription_user}
+    password: ${DB_PASSWORD:subscription_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: 8080
+
+jwt:
+  secret: ${JWT_SECRET:VGhpc0lzQURldmVsb3BtZW50U2VjcmV0S2V5Rm9yU3Vic2NyaXB0aW9uQXBpMjAyNg==}
+  expiration: 3600000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
